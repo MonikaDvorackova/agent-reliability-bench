@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this reference implementation, please cite this software repository."
+type: software
+authors:
+  - family-names: "Dvořáčková"
+    given-names: "Monika"
+title: "agent-reliability-bench"
+repository-code: "https://github.com/MonikaDvorackova/agent-reliability-bench"
+license: MIT
