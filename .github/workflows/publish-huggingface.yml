@@ -30,7 +30,15 @@ jobs:
           if "/" not in repo:
               raise ValueError("HF_SPACE_REPO must be namespace/name")
           api = HfApi(token=token)
-          api.create_repo(repo_id=repo, repo_type="space", space_sdk="static", exist_ok=True)
+          from huggingface_hub.errors import HfHubHTTPError
+          try:
+              api.create_repo(repo_id=repo, repo_type="space", space_sdk="static", exist_ok=True)
+          except HfHubHTTPError as exc:
+              if exc.response is not None and exc.response.status_code == 402:
+                  print("Hugging Face rejected Static Space creation with HTTP 402.")
+                  print("Dataset published; demo can be deployed via GitHub Pages instead.")
+                  raise SystemExit(0)
+              raise
           api.upload_folder(folder_path="static-space", repo_id=repo, repo_type="space", commit_message="Publish interactive evaluator")
           print(f"https://huggingface.co/spaces/{repo}")
           PY
