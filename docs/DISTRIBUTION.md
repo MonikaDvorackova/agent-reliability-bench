@@ -6,7 +6,7 @@ GitHub Actions **Benchmark artifact** runs automatically and uploads the JSON ou
 
 To opt in to Hugging Face publication, create the GitHub environment `huggingface-publishing`, add repository secret `HF_TOKEN` (a fine-grained write token with permission for the target repositories), and repository variables `HF_DATASET_REPO` and `HF_SPACE_REPO` in `namespace/name` format. Then run **Publish Hugging Face dataset and Space** manually in Actions. Review the target namespace, token scopes and dataset content first.
 
-The Space is a standalone Gradio app. It does not require a private API key and does not run third-party agents.
+The Space is a standalone static browser app. It does not require a private API key and does not run third-party agents.
 
 ## 2. Community channels
 
