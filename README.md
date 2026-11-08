@@ -61,3 +61,7 @@ Each JSONL record requires `task_id` (string), `expected_tools` (list of strings
 ## Run without local setup
 
 Use [CI](https://github.com/MonikaDvorackova/agent-reliability-bench/actions/workflows/ci.yml) → Run workflow to validate remotely, or [Benchmark artifact](https://github.com/MonikaDvorackova/agent-reliability-bench/actions/workflows/benchmark-artifact.yml) → Run workflow to generate a downloadable benchmark JSON. For custom JSONL, clone the repository and execute from its root, not your home directory.
+
+## Project showcase and feedback
+
+Part of a public [trustworthy AI and reliable ML research engineering portfolio](https://github.com/MonikaDvorackova/MonikaDvorackova#research-engineering-projects). For project scope, test coverage and limitations, see this README and the repository's GitHub Actions. Reproducible issues and narrowly scoped contributions are welcome. These reference implementations are not certified production systems.
