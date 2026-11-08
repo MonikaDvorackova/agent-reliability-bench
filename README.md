@@ -41,3 +41,13 @@ Exact tool-name sequences are compared; semantic equivalence, model reasoning qu
 ## License
 
 MIT. Contributions should include a focused regression test and an explanation of changed assumptions.
+
+## Try it and share results
+
+- Export a deterministic benchmark artifact: `python -m scripts.export_benchmark`.
+- GitHub Actions automatically validates and uploads `benchmark-results` on every PR and push to main.
+- A standalone Gradio demo is in [space/](space/). Run locally with `pip install -r space/requirements.txt && python space/app.py`.
+- Optional Hugging Face dataset + Space publication is **manual and credential-gated**. See [distribution setup](docs/DISTRIBUTION.md).
+- Report bugs and reproducible trace failures through [GitHub Issues](https://github.com/MonikaDvorackova/agent-reliability-bench/issues).
+
+No social posts, Hugging Face uploads, or third-party account changes are performed without explicit configuration.
