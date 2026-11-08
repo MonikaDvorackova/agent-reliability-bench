@@ -17,7 +17,7 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HF_DATASET_REPO: ${{ vars.HF_DATASET_REPO }}
         run: python -m scripts.publish_hf
-      - name: Publish Gradio Space
+      - name: Publish free Static Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HF_SPACE_REPO: ${{ vars.HF_SPACE_REPO }}
@@ -30,7 +30,7 @@ jobs:
           if "/" not in repo:
               raise ValueError("HF_SPACE_REPO must be namespace/name")
           api = HfApi(token=token)
-          api.create_repo(repo_id=repo, repo_type="space", space_sdk="gradio", exist_ok=True)
-          api.upload_folder(folder_path="space", repo_id=repo, repo_type="space", commit_message="Publish interactive evaluator")
+          api.create_repo(repo_id=repo, repo_type="space", space_sdk="static", exist_ok=True)
+          api.upload_folder(folder_path="static-space", repo_id=repo, repo_type="space", commit_message="Publish interactive evaluator")
           print(f"https://huggingface.co/spaces/{repo}")
           PY
