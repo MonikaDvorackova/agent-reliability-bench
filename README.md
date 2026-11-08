@@ -51,3 +51,9 @@ MIT. Contributions should include a focused regression test and an explanation o
 - Report bugs and reproducible trace failures through [GitHub Issues](https://github.com/MonikaDvorackova/agent-reliability-bench/issues).
 
 No social posts, Hugging Face uploads, or third-party account changes are performed without explicit configuration.
+
+## Batch evaluation of tool traces
+
+Run `python -m scripts.evaluate_jsonl examples/agent_traces.jsonl -o artifacts/batch-results.json`.
+
+Each JSONL record requires `task_id` (string), `expected_tools` (list of strings), and `observed_tools` (list of strings). Optional fields: `forbidden_tools` (list of strings) and `max_calls` (nonnegative integer, default 10). Output includes per-case results and aggregate success, forbidden-call, budget-violation, and mean-call metrics. Inputs are evaluated locally; no third-party model is contacted. See [public demo](https://monikadvorackova.github.io/agent-reliability-bench/).
