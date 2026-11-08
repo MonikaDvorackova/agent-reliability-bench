@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Reliability Bench</title>
+<style>
+:root{color-scheme:light dark;font-family:system-ui,sans-serif}body{max-width:780px;margin:3rem auto;padding:0 1.2rem;line-height:1.5}
+label{display:block;font-weight:600;margin-top:1rem}input{box-sizing:border-box;width:100%;padding:.65rem;border:1px solid #888;border-radius:6px;background:transparent;color:inherit}
+button{margin-top:1.4rem;padding:.75rem 1.3rem;border:0;border-radius:6px;background:#2857b5;color:white;cursor:pointer}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:1rem;background:rgba(127,127,127,.12);border-radius:6px}
+small{color:gray}
+</style>
+</head><body>
+<h1>Agent Reliability Bench</h1>
+<p>Evaluate exact tool-call sequence compliance. This deterministic reference demo runs locally in your browser and does not send traces to a server.</p>
+<form id="form">
+<label for="expected">Expected tools (comma-separated)</label><input id="expected" value="search,answer">
+<label for="observed">Observed tools (comma-separated)</label><input id="observed" value="search,answer">
+<label for="forbidden">Forbidden tools</label><input id="forbidden" value="delete">
+<label for="budget">Maximum tool calls</label><input id="budget" type="number" min="0" step="1" value="10">
+<button type="submit">Evaluate</button>
+</form><h2>Result</h2><pre id="result" role="status" aria-live="polite">Run an evaluation to see results.</pre>
+<p><small>Exact sequence matching only. Not an LLM quality benchmark, model leaderboard, or semantic evaluation.</small></p>
+<p><a href="https://github.com/MonikaDvorackova/agent-reliability-bench">Source code and issues</a></p>
+<script>
+const parse=id=>document.getElementById(id).value.split(",").map(s=>s.trim()).filter(Boolean);
+document.getElementById("form").addEventListener("submit",e=>{
+e.preventDefault();
+const expected=parse("expected"),observed=parse("observed"),forbidden=parse("forbidden");
+const budget=Number(document.getElementById("budget").value);
+if(!Number.isSafeInteger(budget)||budget<0){document.getElementById("result").textContent="Maximum calls must be a nonnegative integer.";return;}
+const violations=observed.filter(s=>forbidden.includes(s));
+const budget_exceeded=observed.length>budget;
+const success=expected.length===observed.length&&expected.every((s,i)=>s===observed[i])&&violations.length===0&&!budget_exceeded;
+document.getElementById("result").textContent=JSON.stringify({success,expected,observed,forbidden_calls:violations,budget_exceeded,method:"Exact sequence matching; not semantic agent evaluation"},null,2);
+});
+</script></body></html>
