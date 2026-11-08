@@ -57,3 +57,7 @@ No social posts, Hugging Face uploads, or third-party account changes are perfor
 Run `python -m scripts.evaluate_jsonl examples/agent_traces.jsonl -o artifacts/batch-results.json`.
 
 Each JSONL record requires `task_id` (string), `expected_tools` (list of strings), and `observed_tools` (list of strings). Optional fields: `forbidden_tools` (list of strings) and `max_calls` (nonnegative integer, default 10). Output includes per-case results and aggregate success, forbidden-call, budget-violation, and mean-call metrics. Inputs are evaluated locally; no third-party model is contacted. See [public demo](https://monikadvorackova.github.io/agent-reliability-bench/).
+
+## Run without local setup
+
+Use [CI](https://github.com/MonikaDvorackova/agent-reliability-bench/actions/workflows/ci.yml) → Run workflow to validate remotely, or [Benchmark artifact](https://github.com/MonikaDvorackova/agent-reliability-bench/actions/workflows/benchmark-artifact.yml) → Run workflow to generate a downloadable benchmark JSON. For custom JSONL, clone the repository and execute from its root, not your home directory.
