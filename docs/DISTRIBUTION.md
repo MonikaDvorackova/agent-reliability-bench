@@ -25,3 +25,9 @@ Invite reproducible bug reports through GitHub Issues. Include expected tool tra
 ## 4. Measurement
 
 GitHub stars are not active users. Track external issues, unique demo usage where privacy-preserving analytics are available, reproducibility reports, and contributions. Do not invent adoption statistics.
+
+## Free public demo fallback
+
+Hugging Face may return HTTP 402 even when creating a Static Space. This is an external hosting restriction, not a dataset publication failure. The publication workflow reports this condition without failing the dataset job.
+
+For a public demo without Hugging Face hosting, open repository **Settings → Pages → Build and deployment → Source: GitHub Actions**. Then manually run **Deploy demo to GitHub Pages** (or push a change to `static-space/`). The intended public URL is `https://monikadvorackova.github.io/agent-reliability-bench/`; it will work only after Pages is enabled and deployment succeeds. No token is needed for Pages.
